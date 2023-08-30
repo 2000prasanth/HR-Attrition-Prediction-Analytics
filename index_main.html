@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Attrition Prediction</title>
+</head>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+form {
+  margin-top: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+form button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #555;
+}
+
+</style>
+<body>
+  <h1>Predict Attrition</h1>
+  <form action="{{ url_for('predict') }}" method="POST">
+
+    <label for="BusinessTravel">Business Travel  [2=Rarely ,1=Frequently ,0=No travel]</label>
+    <input type="number" name="BusinessTravel" required><br><br>
+    
+    <label for="Department">Department  [ 2=Sales, 1=R&D, 0=HR]</label>
+    <input type="text" name="Department" required><br><br>
+    
+    <label for="DistanceFromHome">DistanceFromHome [in Km's]</label>
+    <input type="number" name="DistanceFromHome" required><br><br>
+
+    <label for="Education">Education [1,2,3,4,5]</label>
+    <input type="number" name="Education" required><br><br>
+
+    <label for="EducationField">EducationField ['Healthcare Representative': 1, 'R&D Scientist': 2, 'Sales Executive': 3, 'Human Resources': 4, 'Research Director': 5, 'Laboratory Technician': 6, 'Manufacturing Director': 7, 'Sales Representative': 8, 'Manager': 9] </label>
+    <input type="number" name="EducationField" required><br><br>
+
+    <label for="Gender">Gender [Female : 0, Male 1]</label>
+    <input type="number" name="Gender" required><br><br>
+
+    <label for="JobLevel">JobLevel [1,2,3,4,5]</label>
+    <input type="number" name="JobLevel" required><br><br>
+
+    <label for="JobRole">JobRole [Life Sciences': 1, 'Other': 2, 'Medical': 3, 'Marketing': 4, 'Technical Degree': 5, 'Human Resources': 6]</label>
+    <input type="number" name="JobRole" required><br><br>
+
+    <label for="EmployeeCount">EmployeeCount [1 or 1+]</label>
+    <input type="number" name="EmployeeCount" required><br><br>
+
+    <label for="MaritalStatus">MaritalStatus [1=Married ,2=Single,3=Divorced]</label>
+    <input type="number" name="MaritalStatus" required><br><br>
+
+    <label for="MonthlyIncome">MonthlyIncome [Value between 1000 to 1500000]</label>
+    <input type="number" name="MonthlyIncome" required><br><br>
+
+    <label for="NumCompaniesWorked">NumCompaniesWorked [1-8+]</label>
+    <input type="number" name="NumCompaniesWorked" required><br><br>
+
+    <label for="PercentSalaryHike">PercentSalaryHike [any value less than 100] </label>
+    <input type="number" name="PercentSalaryHike" required><br><br>
+
+    <label for="StandardHours">StandardHours [Normally 8 hours]</label>
+    <input type="number" name="StandardHours" required><br><br>
+
+    <label for="StockOptionLevel">StockOptionLevel [0,1,2,3]</label>
+    <input type="number" name="StockOptionLevel" required><br><br>
+
+    <label for="TotalWorkingYears">TotalWorkingYears [0-40]</label>
+    <input type="number" name="TotalWorkingYears" required><br><br>
+
+    <label for="TrainingTimesLastYear">TrainingTimesLastYear [0-6]</label>
+    <input type="number" name="TrainingTimesLastYear" required><br><br>
+
+    <label for="YearsAtCompany">YearsAtCompany [0-40]</label>
+    <input type="number" name="YearsAtCompany" required><br><br>
+
+    <label for="YearsSinceLastPromotion">YearsSinceLastPromotion [0-14]</label>
+    <input type="number" name="YearsSinceLastPromotion" required><br><br>
+
+    <label for="YearsWithCurrManager">YearsWithCurrManager [0-14] </label>
+    <input type="number" name="YearsWithCurrManager" required><br><br>
+
+    <label for="EnvironmentSatisfaction">EnvironmentSatisfaction [1,2,3,4]</label>
+    <input type="number" name="EnvironmentSatisfaction" required><br><br>
+
+    <label for="JobSatisfaction">JobSatisfaction [1,2,3,4]</label>
+    <input type="number" name="JobSatisfaction" required><br><br>
+
+    <label for="WorkLifeBalance">WorkLifeBalance [1,2,3,4] </label>
+    <input type="number" name="WorkLifeBalance" required><br><br>
+
+    <label for="JobInvolvement">JobInvolvement [1,2,3,4]</label>
+    <input type="number" name="JobInvolvement" required><br><br>
+
+    <label for="PerformanceRating">PerformanceRating [~3,~4]</label>
+    <input type="number" name="PerformanceRating" required><br><br>
+    
+    
+    <button type="submit">Predict</button>
+  </form>
+</body>
+</html>
